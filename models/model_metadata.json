@@ -1,0 +1,98 @@
+{
+  "model_name": "LinearSVC (character TF-IDF + lexical features)",
+  "training_date_utc": "2026-10-17T11:41:01.816779+00:00",
+  "dataset": "UCI PhiUSIIL Phishing URL (Website), ID 967, local CSV",
+  "dataset_rows": 235795,
+  "experiment_rows": 30000,
+  "train_rows": 24000,
+  "test_rows": 6000,
+  "test_size_fraction": 0.2,
+  "random_state": 42,
+  "label_mapping": {
+    "0": "Legitimate",
+    "1": "Potential Phishing"
+  },
+  "features": {
+    "input_column": "URL",
+    "target_column": "label",
+    "target_used_without_remapping": true,
+    "character_tfidf": {
+      "analyzer": "char",
+      "ngram_range": [
+        3,
+        5
+      ],
+      "min_df": 2,
+      "max_features": 100000,
+      "dtype": "float32",
+      "sublinear_tf": true
+    },
+    "lexical_feature_columns": [
+      "url_length",
+      "host_length",
+      "num_letters",
+      "num_digits",
+      "digit_ratio",
+      "letter_ratio",
+      "num_dots",
+      "num_hyphens",
+      "num_at_symbols",
+      "num_slashes",
+      "num_question_marks",
+      "num_equals",
+      "num_ampersands",
+      "num_percent",
+      "num_underscores",
+      "num_subdomains",
+      "has_https",
+      "has_ip_address",
+      "has_punycode",
+      "has_port",
+      "path_length",
+      "query_length"
+    ],
+    "lexical_scaling": "MaxAbsScaler fitted on training rows",
+    "combined_matrix": "Sparse character TF-IDF plus scaled lexical features"
+  },
+  "estimator": {
+    "class": "sklearn.svm.LinearSVC",
+    "parameters": {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": "auto",
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "loss": "squared_hinge",
+      "max_iter": 2000,
+      "multi_class": "ovr",
+      "penalty": "l2",
+      "random_state": 42,
+      "tol": 0.0001,
+      "verbose": 0
+    },
+    "supports_probability": false
+  },
+  "evaluation": {
+    "description": "Metrics from the held-out stratified test split; not guaranteed real-world performance.",
+    "accuracy": 0.9955,
+    "precision": 1.0,
+    "recall": 0.9894900739587388,
+    "f1": 0.9947172764625318,
+    "roc_auc": 0.9990715023724679,
+    "confusion_matrix_labels": [
+      "Legitimate (0)",
+      "Potential Phishing (1)"
+    ],
+    "confusion_matrix": [
+      [
+        3431,
+        0
+      ],
+      [
+        27,
+        2542
+      ]
+    ]
+  },
+  "scikit_learn_version": "1.9.1"
+}

@@ -1,0 +1,8 @@
+numpy>=2.0,<3.0
+pandas
+scipy
+scikit-learn
+joblib
+streamlit
+matplotlib
+ucimlrepo
